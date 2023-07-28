@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Books</title>
+</head>
+<body>
+    <!-- Inside books.ejs -->
+<h1>All Books</h1>
+
+<% books.forEach((book) => { %>
+  <div class="book">
+    <h3><%= book.title %></h3>
+    <p><%= book.author %></p>
+    <p><%= book.genre %></p>
+    <!-- Rest of the book details -->
+    <a href="/user/bookById/<%= book._id %>">View Details</a>
+  </div>
+<% }) %>
+
+</body>
+</html>

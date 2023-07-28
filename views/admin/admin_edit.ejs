@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <!-- edit-admin.ejs -->
+<form action="/admin/<%= admin._id %>" method="POST">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" value="<%= admin.firstName %>" required>
+    
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" value="<%= admin.lastName %>" required>
+    
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" value="<%= admin.username %>" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="<%= admin.email %>" required>
+    
+    <button type="submit">Update Admin</button>
+   
+  </form>
+  
+    </div>
+    <div>
+        <button>
+            <a href="/admin/all" >Back to View Page</a>
+        </button>
+    </div>
+</body>
+</html>

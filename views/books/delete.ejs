@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Book Form</title>
+</head>
+<body>
+    <h1>Delete Book</h1>
+    <!-- delete.ejs for book -->
+    <h2>Are you sure you want to delete this book?</h2>
+    <p>Book Title: <%= book.title %> </p>
+    <p>Author: <%= book.author %></p>
+    <form action="/books/<%= book._id %>/delete" method="post">
+      <button type="submit" >Delete</button>
+      <a href="/books/index" >Cancel</a>
+    </form>
+</body>
+</html>

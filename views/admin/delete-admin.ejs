@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Delete Admin</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body>
+  <h1>Delete Admin</h1>
+<!-- delete-admin.ejs -->
+<h2>Are you sure you want to delete this admin?</h2>
+<p>Admin Name: <%= admin.firstName %> <%= admin.lastName %></p>
+<form action="/admin/<%= admin._id %>/delete" method="post">
+  <button type="submit" >Delete</button>
+  <a href="/admin/all" >Cancel</a>
+</form>
+</body>
+</html>

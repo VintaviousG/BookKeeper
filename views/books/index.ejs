@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Books</title>
+</head>
+<body>
+    <h1>Book Collection</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Genre</th>
+      <th>Price</th>
+      <th>Stock</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% books.forEach((book) => { %>
+      <tr>
+        <img src="https://covers.openlibrary.org/b/isbn/9780451169518-M.jpg" alt="<%= book.title %>" >
+        <td><%= book.title %></td>
+        <td><%= book.author %></td>
+        <td><%= book.genre %></td>
+        <td><%= book.price %></td>
+        <td><%= book.stock %></td>
+        <td>
+          <a href="/books/<%= book._id %>">View</a>
+          <a href="/books/<%= book._id %>/edit">Edit</a>
+          <button>
+            <a href="/books/<%= book._id %>/delete">Delete</a>
+            
+          </button>
+        </td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+<a href="/books/create">Create New Book</a>
+</body>
+</html>

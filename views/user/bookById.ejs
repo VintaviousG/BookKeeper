@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Cetain Book</title>
+</head>
+<body>
+    <!-- Inside book.ejs -->
+<h1><%= book.title %></h1>
+<p><%= book.author %></p>
+<p><%= book.genre %></p>
+<p>
+    <b> <%= book.description %></b>
+    
+</p>
+<!-- Rest of the book details -->
+<a href="/user/books">Back to All Books</a>
+
+</body>
+</html>
