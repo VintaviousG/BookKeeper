@@ -16,7 +16,9 @@
       <th>Genre</th>
       <th>Price</th>
       <th>Stock</th>
+      <th>ISBN</th>
       <th>Actions</th>
+      
     </tr>
   </thead>
   <tbody>
@@ -28,13 +30,21 @@
         <td><%= book.genre %></td>
         <td><%= book.price %></td>
         <td><%= book.stock %></td>
+        <td><%= book.isbn %></td>
         <td>
-          <a href="/books/<%= book._id %>">View</a>
-          <a href="/books/<%= book._id %>/edit">Edit</a>
-          <button>
-            <a href="/books/<%= book._id %>/delete">Delete</a>
+
+          <div>
+
+            <button>  <a href="/books/<%= book._id %>">View</a></button>
             
-          </button>
+            <button><a href="/books/<%= book._id %>/edit">Edit</a></button>
+           
+            <button>
+              <a href="/books/<%= book._id %>/delete">Delete</a>
+              
+            </button>
+          </div>
+         
         </td>
       </tr>
     <% }); %>

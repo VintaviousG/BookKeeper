@@ -58,9 +58,9 @@ const bookCreateForm = (req, res) => {
 // Create a new book
 const bookCreate = async (req, res) => {
   try {
-    const {title, author, genre, description, price, stock, } = req.body;
+    const {title, author, genre, description, price, stock, isbn } = req.body;
     const book = new BookModel.Book({
-      title, author, genre, description, price, stock
+      title, author, genre, description, price, stock, isbn
     });
     await book.save();
 
@@ -102,9 +102,9 @@ const bookEditForm = async (req, res) => {
 const bookUpdate = async (req, res) => {
 
   try {
-    const {title, author, genre, description, price, stock, } = req.body;
+    const {title, author, genre, description, price, stock, isbn} = req.body;
 
-    await BookModel.Book.findByIdAndUpdate(req.params.id, {title, author, genre, description, price, stock});
+    await BookModel.Book.findByIdAndUpdate(req.params.id, {title, author, genre, description, price, stock, isbn});
     res.redirect('/books/index');
   } catch (error) {
     console.log(error);
