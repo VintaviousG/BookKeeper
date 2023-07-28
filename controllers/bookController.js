@@ -3,8 +3,23 @@ const axios = require('axios');
 
 
 // Function to fetch book cover URL based on the book title
+//Example for practing git
 async function fetchBookCoverUrl(url) {
+//This may not work or probbly wont use
+  const bookUrl = 'https://openlibrary.org/works/OL45883W';
+const apiUrl = `${bookUrl}.json`;
 
+fetch(apiUrl)
+  .then(response => response.json())
+  .then(data => {
+    const covers = data.cover;
+    if (covers) {
+      console.log(covers[0]);
+    } else {
+      console.log('No cover available.');
+    }
+  })
+  .catch(error => console.log(error));
 
   
 }
