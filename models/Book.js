@@ -33,7 +33,12 @@ const bookSchema = new mongoose.Schema({
     stock: {
         type: Number,
         required: true,
-  }
+  },
+  isbn: {
+    type: String,
+    required: true,
+    unique: true,
+    }
 });
 
 const Book = mongoose.model('Book', bookSchema);
@@ -139,5 +144,7 @@ const insertManyBooks = async () => {
 
 }
 //insertManyBooks();
+
+
 
 exports.Book = Book;
