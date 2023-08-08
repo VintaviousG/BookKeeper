@@ -1,66 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of Admins</title>
-</head>
-<body>
-  
-    <h1>List of All Admins</h1>
-    <div>
-      <a href="/books/index" target="_blank" rel="noopener noreferrer">
-        <h2>Books Page For Admin</h2>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>List of Admins</title>
 
-      </a>
-      
-    </div>
-    <table>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% admins.forEach(function(admin) { %>
-          <tr>
-            <td><%= admin.firstName%></td>
-            <td><%= admin.lastName  %></td>
-            <td><%= admin.email %></td>
-            <td><%= admin.role %></td>
-            <td>
+        <!-- Link to Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <h1>List of All Admins</h1>
+        <div>
+            <a href="/books/index" target="_blank" rel="noopener noreferrer">
+                <h2>Books Page For Admin</h2>
+            </a>
+        </div>
 
-              <a href="/admin/byId/<%= admin._id %>">View Admin</a>
-              <a href="/admin/<%= admin._id %>/edit">Edit</a>
-             
-              
-             
-              <button>
-                <a href="/admin/<%= admin._id %>/delete">Delete</a>
-                
-              </button>
-              
+        <div class="container mt-4">
+            <h2>Admin Dashboard</h2>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% admins.forEach(function(admin) { %>
+                            <tr>
+                                <td><%= admin.firstName%></td>
+                                <td><%= admin.lastName %></td>
+                                <td><%= admin.email %></td>
+                                <td><%= admin.role %></td>
+                                <td>
+                                    <a
+                                        href="/admin/byId/<%= admin._id %>"
+                                        class="btn btn-primary btn-sm"
+                                        >View</a
+                                    >
+                                    <a
+                                        href="/admin/<%= admin._id %>/edit"
+                                        class="btn btn-primary btn-sm"
+                                        >Edit</a
+                                    >
 
+                                    <a
+                                        href="/admin/<%= admin._id %>/delete"
+                                        class="btn btn-primary btn-sm"
+                                        >Delete</a
+                                    >
+                                </td>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div>
             
+                <a href="/admin/create" class="btn btn-danger">Create a New Admin</a>
+            
+        </div>
 
-            </td>
-          </tr>
-          <% }); %>
-        </tbody>
-      </table>
-
-      <div>
-        <button>
-          <a href="/admin/create">Create a New Admin</a>
-        </button>
-      </div>
-     
-      
-      
-</body>
+        <!-- Link to Bootstrap JS and Popper.js -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>
