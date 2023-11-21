@@ -12,6 +12,7 @@
 <% books.forEach((book) => { %>
   <div class="book">
     <h3><%= book.title %></h3>
+    <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" alt="<%= book.title %>" >
     <p><%= book.author %></p>
     <p><%= book.genre %></p>
     <!-- Rest of the book details -->
