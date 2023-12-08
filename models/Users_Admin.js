@@ -10,50 +10,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/BookshelfApp', {
   console.error('Error connecting to MongoDB:', err);
 });
 
-const userSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true
-  },
-  lastName: {
-    type: String,
-    required: true
-  },
-  username: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  }
-  // Other user-related fields
-});
-
-const User = mongoose.model('User', userSchema);
-
-//Insert multiple users into User Collection
-const multipleUsers = () => {
-  const user = User.insertMany([
-    { firstName: 'John', lastName: 'Doe', username: 'JohnDoe123', password: 'JDoe123', email: 'JohnDoe@gmail.com' },
-    { firstName: 'Rio', lastName: 'Axel', username: 'R_Axel', password: 'Rio_12', email: 'R_Axel_10'}
-  ]).then(() => {
-    //Success Response
-    console.log("Data Has been inserted into User Collection");
-  }).catch((error) => {
-    //Failure caught with catch 
-    console.log(error)
-  })
-
-
-}
-
 // Admin schema
 const adminSchema = new mongoose.Schema({
   firstName: {
@@ -136,16 +92,9 @@ const insertAdmins = async () => {
 
 //insertAdmins();
 
-
-
-
-//Insert multiple Users 
-//multipleUsers();
-
 //Make a single admin
 //makeAdmin();
 
 //Proper way to export functions
-exports.User = User;
 exports.Admin = Admin;
 
