@@ -3,7 +3,7 @@ const User = require("../models/User");
 
 //Show Register Form
 const showRegisterForm = (req, res) => {
-    res.render("register");
+    res.render("/user/register");
 };
 
 //Register User
@@ -28,7 +28,7 @@ const registerUser = async (req, res) => {
         //res.redirect('/login')
     } catch (error) {
         console.log(error);
-        res.render("error", { error });
+        //res.render("error", { error });
     }
 };
 

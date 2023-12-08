@@ -3,9 +3,11 @@ const express = require('express')
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const morgan = require('morgan');
+
 const adminRoutes = require('./routes/admin')
 const bookRoutes = require('./routes/bookRoutes')
 const userRoutes = require('./routes/user');
+const authRoutes = require('./routes/authRoutes');
 
 
 const app = express();
@@ -45,6 +47,10 @@ app.use("/books", bookRoutes)
 
 // Use user routes
 app.use('/user', userRoutes);
+
+// Use auth routes
+app.use('/auth', authRoutes);
+
 //Listening on Port 3000
 app.listen(3000, function () {
     console.log("Server is listening on port 3000");
