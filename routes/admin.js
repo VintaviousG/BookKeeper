@@ -39,6 +39,10 @@ adminRouter.get('/create', (req, res) => {
 // Should create a new admin form 
 adminRouter.post('/create', adminController.createAdmin);
 
+//Admin can see a list of Users
+//GET route to view list of users
+adminRouter.get('/users', adminController.getUserList);
+
 // Edit/Update admin: GET Route to display the admin edit form by ID
 adminRouter.get('/:id/edit', adminController.editAdminByIDForm )
 // Edit/Update: POST Route to update the admin by ID

@@ -31,7 +31,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/BookshelfApp', {
 app.use(express.json()) 
 
 // parse url encoded objects- data sent through the url
-app.use(express.urlencoded({ extended: true})) 
+app.use(express.urlencoded({ extended: true })) 
+//app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: true }));
+
 
 
 //Setup or basic route

@@ -8,6 +8,7 @@
 //const { QueryListOfAdmin } = (req, res)
 //import { QueryListOfAdmin, QueryAdminById } from "../models/Users_Admin"
 const AdminModel = require('../models/Users_Admin')
+const UserModel  = require('../models/User')
 
 //Create a new admin
 const createAdmin = async (req, res) => {
@@ -153,6 +154,19 @@ const GetAdmin = (req, res) => {
     return res.json(user);
 }
 
+//Allow Admin to have a list of user signed up 
+const getUserList = async (req, res) => {
+  try {
+    const users = await UserModel.User.find();
+    // Render a view with the list of users
+    res.render('admin/view-users', { users });
+} catch (error) {
+    // Handle errors, e.g., database connection issues
+    console.error('Error retrieving users:', error);
+    res.status(500).send('Internal Server Error');
+}
+}
+
 //Proper way to export functions
 exports.createAdmin = createAdmin;
 exports.adminList = adminList;
@@ -162,6 +176,7 @@ exports.deleteAdmin = deleteAdmin;
 exports.deleteAdminFormPage = deleteAdminFormPage;
 exports.editAdminByIDForm = editAdminByIDForm;
 exports.postEditAdminID = postEditAdminID;
+exports.getUserList = getUserList;
 
 // module.exports =
 // {
