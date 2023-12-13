@@ -25,7 +25,7 @@
 
             <h2>Leave a Review</h2>
 
-            <form action="/user/bookById/<%=book._id%>/reviews" class="mb-3 validated-form"  method="POST" novalidate>
+            <form action="/user/bookById/<%=book._id%>/reviews" class="mb-3 was-validated .invalid-feedback"  method="POST" >
                 <div class="mb-3">
                     <label class="form-label" for="rating">Rating</label>
                     <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
