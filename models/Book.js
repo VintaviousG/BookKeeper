@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const { Review }  = require('../models/review');
+const Schema = mongoose.Schema;
 
 mongoose.connect('mongodb://127.0.0.1:27017/BookshelfApp', {
   useNewUrlParser: true,
@@ -9,7 +11,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/BookshelfApp', {
   console.error('Error connecting to MongoDB:', err);
 });
 
-const bookSchema = new mongoose.Schema({
+const bookSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -41,7 +43,8 @@ const bookSchema = new mongoose.Schema({
   }, 
   reviews: [
     {
-      type: mongoose.Schema.Types.ObjectId, ref: 'Review'
+      type: Schema.Types.ObjectId,
+      ref: 'Review'
     }
   ]
 });

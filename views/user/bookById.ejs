@@ -24,6 +24,7 @@
             </p>
 
             <h2>Leave a Review</h2>
+            
 
             <form action="/user/bookById/<%=book._id%>/reviews" class="mb-3 was-validated .invalid-feedback"  method="POST" >
                 <div class="mb-3">
@@ -47,6 +48,25 @@
                     >Back to Books</a
                 >
             </div>
+
+          <h2>
+            <%= book.reviews%>
+          </h2>
+
+
+          <% for (let review of book.reviews) { %>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Rating: <%= review.rating %>
+                    </h5>
+                    <p class="card-text">Review: <%= review.body %></p>
+                </div>
+            </div>
+        <% } %>
+        
+
+
         </div>
     </body>
 </html>
