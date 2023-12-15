@@ -5,6 +5,7 @@
 const express = require("express");
 //const router = express.Router();
 const BookModel = require("../models/Book");
+const ReviewModel = require("../models/review");
 
 // Route: GET /books
 // Description: Get all books
@@ -37,6 +38,22 @@ const getBookByID = async (req, res) => {
     }
 };
 
+//function to delete reveiws
+const deleteReview = async (req, res) => {
+  try {
+    const { id, reviewId } = req.params;
+    await BookModel.Book.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await ReviewModel.Review.findByIdAndDelete(reviewId);
+    res.redirect(`/user/bookById/${id}`);
+    
+    console.log("Review deleted successfully");
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
 //Proper way exports
 exports.getUserAllBooks = getUserAllBooks;
 exports.getBookByID = getBookByID;
+exports.deleteReview = deleteReview;

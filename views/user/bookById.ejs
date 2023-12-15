@@ -56,6 +56,12 @@
                         Rating: <%= review.rating %>
                     </h5>
                     <p class="card-text">Review: <%= review.body %></p>
+
+                          <!-- Button to delete the review -->
+            <form action="/user/bookById/<%=book._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-danger">Delete Review</button>
+            </form>
                 </div>
             </div>
         <% } %>

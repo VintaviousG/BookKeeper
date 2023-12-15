@@ -15,6 +15,9 @@ userRouter.get('/books', userController.getUserAllBooks );
   // Description: Get a book by ID
   userRouter.get('/bookById/:id', userController.getBookByID);
 
+//route for deleting reviews
+userRouter.delete('/bookById/:id/reviews/:reviewId', userController.deleteReview );
+
 //Route for book reviews for the users 
 // /user/: id / reviews or 
 // /user/bookById/:id/reviews
