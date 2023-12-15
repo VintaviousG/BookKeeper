@@ -21,10 +21,12 @@ userRouter.get('/books', userController.getUserAllBooks );
 userRouter.post('/bookById/:id/reviews', async (req, res) => {
   const books = await BookModel.Book.findById(req.params.id);
   const review = new ReviewModel.Review(req.body.review);
+  
   books.reviews.push(review);
 
   await review.save();
   await books.save();
+  console.log("")
   res.redirect(`/user/bookById/${books._id}`);
 
   })
