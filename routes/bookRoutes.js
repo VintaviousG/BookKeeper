@@ -16,7 +16,7 @@ router.get('/:id', bookController.bookDetails);
 // Edit/Update admin: GET Route to display the book edit form by ID
 router.get('/:id/edit', bookController.bookEditForm);
 // Edit/Update: POST Route to update the admin by ID
-router.post('/:id', bookController.bookUpdate);
+router.post('/:id/edit', bookController.bookUpdate);
 
 
 router.delete('/:id', bookController.bookDelete);
