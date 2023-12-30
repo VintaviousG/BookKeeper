@@ -2,8 +2,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
+const session = require('express-session');
 const morgan = require("morgan");
 const methodOverride = require("method-override");
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/User');
 
 const adminRoutes = require("./routes/admin");
 const bookRoutes = require("./routes/bookRoutes");
@@ -36,6 +40,12 @@ app.use(express.json());
 // parse url encoded objects- data sent through the url
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(session({ secret: 'secret-key-example', resave: true, saveUninitialized: true }));
+
+//app.use(flash());
+
+//Passport middleware
+
 
 //Setup or basic route
 app.get("/", function (req, res) {

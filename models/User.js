@@ -1,5 +1,7 @@
 // User schema
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
+
 
 mongoose.connect('mongodb://127.0.0.1:27017/BookshelfApp', {
   useNewUrlParser: true,
@@ -27,6 +29,8 @@ const userSchema = new mongoose.Schema({
     }
     
 });
+
+userSchema.plugin(passportLocalMongoose);
 
 const User = mongoose.model('User', userSchema);
 exports.User = User;
