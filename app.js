@@ -40,11 +40,8 @@ app.use(express.json());
 // parse url encoded objects- data sent through the url
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-app.use(session({ secret: 'secret-key-example', resave: true, saveUninitialized: true }));
+//app.use(session({ secret: 'secret-key-example', resave: true, saveUninitialized: true }));
 
-//app.use(flash());
-
-//Passport middleware
 
 
 //Setup or basic route

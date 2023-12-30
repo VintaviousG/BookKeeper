@@ -1,4 +1,8 @@
 const bcrypt = require("bcrypt");
+const express = require('express');
+const router = express.Router();
+const passport = require('../passport'); // Adjust the path based on your project structure
+
 const User = require("../models/User");
 
 //Show Register Form
@@ -33,8 +37,32 @@ const registerUser = async (req, res) => {
     }
 };
 
+//Passport Register Example
+const RegUser_PSExample = (req, res, next) => {
+ // Destructure the data from the request body
+ const { username, password, email } = req.body;
+
+ // Create a new user
+ const newUser = new User({ username, email });
+
+ // Register the user using Passport's register method
+ User.register(newUser, password, (err, user) => {
+   if (err) {
+     console.error(err);
+     return res.status(500).json({ error: err.message });
+   }
+
+   // Log in the user after registration
+   passport.authenticate('local')(req, res, () => {
+     res.status(200).json({ success: true, user });
+   });
+ });
+
+}
+
 //Proper way to export functions
 
 
 exports.showRegisterForm = showRegisterForm;
+exports.RegUser_PSExample = RegUser_PSExample;
 exports.registerUser = registerUser;
