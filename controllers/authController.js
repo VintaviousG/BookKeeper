@@ -43,7 +43,7 @@ const RegUser_PSExample = (req, res, next) => {
  const { username, password, email } = req.body;
 
  // Create a new user
- const newUser = new User({ username, email });
+ const newUser = new User.User({ username, email });
 
  // Register the user using Passport's register method
  User.register(newUser, password, (err, user) => {

@@ -8,22 +8,8 @@
 const express = require('express');
 
 const adminController = require('../controllers/adminController');
-//const { GetAdmin,  } = require('../controllers/adminController');
 const adminRouter = express.Router();
 
-//controlles functions from controleers folder specific for admin
-
-// const {} = require('')
-
-//GET all books, view all books
-
-//Get certain book by certain ._id
-
-//Update Book by ._id
- 
-//Delete Book from 
-
-//If possible, Admin can view list of users from users collection
 
 // GET or view all admin
 adminRouter.get('/all', adminController.adminList);

@@ -5,8 +5,8 @@ const ejsMate = require("ejs-mate");
 const session = require('express-session');
 const morgan = require("morgan");
 const methodOverride = require("method-override");
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
+//const passport = require('passport');
+//const LocalStrategy = require('passport-local');
 const User = require('./models/User');
 
 const adminRoutes = require("./routes/admin");

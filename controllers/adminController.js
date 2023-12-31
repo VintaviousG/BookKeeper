@@ -8,7 +8,7 @@
 //const { QueryListOfAdmin } = (req, res)
 //import { QueryListOfAdmin, QueryAdminById } from "../models/Users_Admin"
 const AdminModel = require('../models/Users_Admin')
-const UserModel  = require('../models/User')
+const User  = require('../models/User')
 
 //Create a new admin
 const createAdmin = async (req, res) => {
@@ -157,7 +157,8 @@ const GetAdmin = (req, res) => {
 //Allow Admin to have a list of user signed up 
 const getUserList = async (req, res) => {
   try {
-    const users = await UserModel.User.find();
+    const users = await User.User.find({});
+    console.log(users);
     // Render a view with the list of users
     res.render('admin/view-users', { users });
 } catch (error) {
