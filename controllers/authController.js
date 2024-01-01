@@ -4,6 +4,10 @@ const router = express.Router();
 const passport = require('../passport'); // Adjust the path based on your project structure
 
 const User = require("../models/User");
+// Configure Passport local strategy
+passport.use(User.User.createStrategy());
+passport.serializeUser(User.User.serializeUser());
+passport.deserializeUser(User.User.deserializeUser());
 
 //Show Register Form
 const showRegisterForm = (req, res) => {
@@ -30,14 +34,14 @@ const registerUser = async (req, res) => {
 
         //Once saved and successful be
         //directed back to the login page
-        //res.redirect('/login')
+        res.redirect('/admin/users')
     } catch (error) {
         console.log(error);
         //res.render("error", { error });
     }
 };
 
-//Passport Register Example
+//Passport Register Example or Login Example
 const RegUser_PSExample = (req, res, next) => {
  // Destructure the data from the request body
  const { username, password, email } = req.body;
@@ -46,12 +50,13 @@ const RegUser_PSExample = (req, res, next) => {
  const newUser = new User.User({ username, email });
 
  // Register the user using Passport's register method
- User.register(newUser, password, (err, user) => {
+ User.User.register(newUser, password, (err, user) => {
    if (err) {
      console.error(err);
      return res.status(500).json({ error: err.message });
    }
 
+   console.log(newUser)
    // Log in the user after registration
    passport.authenticate('local')(req, res, () => {
      res.status(200).json({ success: true, user });
@@ -60,9 +65,44 @@ const RegUser_PSExample = (req, res, next) => {
 
 }
 
+const Login_PSExample_2 = async (req, res) => {
+  try {
+    const { username, password, email } = req.body;
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user
+    const newUser = new User.User({
+      username,
+      password: hashedPassword,
+      email
+    });
+
+    // Save the user to the database
+    await newUser.save();
+
+    // Log in the user after registration using Passport
+    req.login(newUser, (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+      } else {
+        
+        res.json({ message: 'Registration successful', user: newUser });
+        console.log(newUser)
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
 //Proper way to export functions
 
 
 exports.showRegisterForm = showRegisterForm;
 exports.RegUser_PSExample = RegUser_PSExample;
 exports.registerUser = registerUser;
+exports.Login_PSExample_2 = Login_PSExample_2;
