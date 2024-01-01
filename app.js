@@ -40,8 +40,17 @@ app.use(express.json());
 // parse url encoded objects- data sent through the url
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-//app.use(session({ secret: 'secret-key-example', resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'secret-key-example', resave: true, saveUninitialized: true }));
 
+
+
+passport.use(new LocalStrategy(User.User.authenticate()));
+
+passport.serializeUser(User.User.serializeUser());
+passport.deserializeUser(User.User.deserializeUser());
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 //Setup or basic route

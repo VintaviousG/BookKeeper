@@ -4,10 +4,7 @@ const router = express.Router();
 const passport = require('../passport'); // Adjust the path based on your project structure
 
 const User = require("../models/User");
-// Configure Passport local strategy
-passport.use(User.User.createStrategy());
-passport.serializeUser(User.User.serializeUser());
-passport.deserializeUser(User.User.deserializeUser());
+
 
 //Show Register Form
 const showRegisterForm = (req, res) => {
@@ -99,9 +96,10 @@ const Login_PSExample_2 = async (req, res) => {
   }
 }
 
+
+
+
 //Proper way to export functions
-
-
 exports.showRegisterForm = showRegisterForm;
 exports.RegUser_PSExample = RegUser_PSExample;
 exports.registerUser = registerUser;
