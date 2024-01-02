@@ -44,5 +44,6 @@ router.get('/login',  (req, res) => {
   }
 });
 
+//how to use Passport js and MongoDB together
 
 module.exports = router;

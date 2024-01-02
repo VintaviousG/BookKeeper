@@ -1,4 +1,6 @@
 // User schema
+//New Use Schema because using passport
+const Schema = mongoose.Schema;
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 

@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const express = require('express');
 const router = express.Router();
-const passport = require('../passport'); // Adjust the path based on your project structure
+//const passport = require('../passport'); // Adjust the path based on your project structure
 
 const User = require("../models/User");
 
@@ -11,7 +11,7 @@ const showRegisterForm = (req, res) => {
     res.render('user/register');
 };
 
-//Register User
+//Register User, The Non Passport way. Same as creating a Admin and Book
 const registerUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -38,8 +38,8 @@ const registerUser = async (req, res) => {
     }
 };
 
-//Passport Register Example or Login Example
-const RegUser_PSExample = (req, res, next) => {
+//Passport Register Example
+const RegUser_Passport = (req, res, next) => {
  // Destructure the data from the request body
  const { username, password, email } = req.body;
 
