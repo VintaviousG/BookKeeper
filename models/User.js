@@ -15,23 +15,17 @@ mongoose.connect('mongodb://127.0.0.1:27017/BookshelfApp', {
 });
 
 const userSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
     email: {
         type: String,
-        required: true,
-        unique: true,
+    required: true,
+    unique: true,
+        
     }
     
 });
+
 userSchema.plugin(passportLocalMongoose);
 
-const User = mongoose.model('User', userSchema);
-exports.User = User;
+// const User = mongoose.model('User', userSchema);
+// exports.User = User;
+module.exports = mongoose.model('User', userSchema);
