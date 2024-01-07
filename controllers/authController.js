@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-//const passport = require('../passport'); // Adjust the path based on your project structure
 
+//passport package
+const passport = require('passport');
 const User = require("../models/User");
 
 
