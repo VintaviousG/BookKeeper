@@ -6,8 +6,6 @@ const session = require('express-session');
 const morgan = require("morgan");
 const methodOverride = require("method-override");
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
-const User = require('./models/User');
 
 const adminRoutes = require("./routes/admin");
 const bookRoutes = require("./routes/bookRoutes");
@@ -22,17 +20,7 @@ app.engine("ejs", ejsMate);
 
 app.set("view engine", "ejs");
 //Connect to MongoDB Database
-mongoose
-    .connect("mongodb://127.0.0.1:27017/BookshelfApp", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .then(() => {
-        console.log("Connected to MongoDB");
-    })
-    .catch((err) => {
-        console.error("Error connecting to MongoDB:", err);
-    });
+
 
 // parse json objects
 app.use(express.json());
@@ -40,18 +28,15 @@ app.use(express.json());
 // parse url encoded objects- data sent through the url
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-app.use(session({ secret: 'secret-key-example', resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'secret-key-example', resave: true, saveUninitialized: false }));
 
-
-
-passport.use(new LocalStrategy(User.User.authenticate()));
-
-passport.serializeUser(User.User.serializeUser());
-passport.deserializeUser(User.User.deserializeUser());
-
+//Passport setup for app to use
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+// Require and use the passport configuration
+require('./config/passport');
 
 //Setup or basic route
 app.get("/", function (req, res) {

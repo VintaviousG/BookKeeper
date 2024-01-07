@@ -157,7 +157,7 @@ const GetAdmin = (req, res) => {
 //Allow Admin to have a list of user signed up 
 const getUserList = async (req, res) => {
   try {
-    const users = await User.User.find({});
+    const users = await User.find({});
     console.log(users);
     // Render a view with the list of users
     res.render('admin/view-users', { users });

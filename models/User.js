@@ -1,6 +1,5 @@
 // User schema
 //New Use Schema because using passport
-const Schema = mongoose.Schema;
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 
@@ -15,12 +14,18 @@ mongoose.connect('mongodb://127.0.0.1:27017/BookshelfApp', {
 });
 
 const userSchema = new mongoose.Schema({
-    email: {
-        type: String,
-    required: true,
-    unique: true,
-        
-    }
+  username: String,
+  password: String,
+
+  // username: {
+  //   type: String,
+  //   required: true,
+  //   unique: true
+  // },
+  // password: {
+  //   type: String,
+  //   required: true
+  // },
     
 });
 

@@ -1,12 +1,11 @@
-// const passport = require('passport');
-// const LocalStrategy = require('passport-local').Strategy;
+//config/passport.js
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
-// //User Model Example
-// const User = require('./models/User');
+//User Model Example
+const User = require('../models/User');
 
-// passport.use(new LocalStrategy(User.User.authenticate()));
+passport.use(new LocalStrategy(User.authenticate()));
 
-// passport.serializeUser(User.User.serializeUser());
-// passport.deserializeUser(User.User.deserializeUser());
-
-// module.exports = passport;
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
