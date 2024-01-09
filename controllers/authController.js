@@ -7,7 +7,7 @@ const User = require("../models/User");
 
 
 //Show Register Form
-const showRegisterForm = (req, res) => {
+exports.showRegisterForm = (req, res) => {
     res.render('user/register');
 };
 
@@ -40,22 +40,24 @@ const showRegisterForm = (req, res) => {
 
 //Passport Register Example
   //the user is no longer using email for register just username and password
-const passportUserRegister = (req, res) => {
- // Destructure the data from the request body
- User.register(new User({ username: req.body.username }), req.body.password, (err, user) => {
-  if (err) {
-    console.error('Error registering user:', err);
-    return res.status(500).json({ error: 'Registration failed' });
-  }
-  passport.authenticate('local')(req, res, () => {
+exports.passportUserRegister = (req, res) => {
+  // Destructure the data from the request body
+  User.register(new User({ username: req.body.username }), req.body.password, (err, user) => {
+    if (err) {
+      console.error('Error registering user:', err);
+      return res.status(500).json({ error: 'Registration failed' });
+    }
+    passport.authenticate('local')(req, res, () => {
       res.json({
-          success: true,
+        success: true,
   
       });
       console.log(req.body.username)
+    });
   });
-});
-}
+};
+
+
 
 
 
@@ -63,6 +65,6 @@ const passportUserRegister = (req, res) => {
 
 
 //Proper way to export functions
-exports.showRegisterForm = showRegisterForm;
-exports.passportUserRegister = passportUserRegister;
+//exports.showRegisterForm = showRegisterForm;
+//exports.passportUserRegister = passportUserRegister;
 //exports.registerUser = registerUser;

@@ -1,7 +1,7 @@
 //These will the routes for this file
 const express = require('express');
+const authController = require('../controllers/authController');
 const router = express.Router();
-const authController = require('../controllers/authController')
 
 //get route for register form
 router.get('/register', authController.showRegisterForm);
