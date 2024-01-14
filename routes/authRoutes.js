@@ -11,15 +11,14 @@ router.post('/register', authController.passportUserRegister);
 
 // Your login route (add this if not already present)
 //passport.authenticate('local'),
-router.get('/login',  (req, res) => {
+router.get('/user/login',  (req, res) => {
     // This function will be called if authentication succeeds
   //res.json({ message: 'Login successful', user: req.user });
   res.render('user/login');
   console.log('On Login Page Route');
 });
   
-
-
-//how to use Passport js and MongoDB together
+// Handle login logic
+router.post('/user/login', authController.passportLoginUser);
 
 module.exports = router;
