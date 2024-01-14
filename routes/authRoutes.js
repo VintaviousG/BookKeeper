@@ -1,6 +1,7 @@
 //These will the routes for this file
 const express = require('express');
 const authController = require('../controllers/authController');
+const { isLoggedIn } = require('../config/auth');
 const router = express.Router();
 
 //get route for register form
@@ -20,5 +21,10 @@ router.get('/user/login',  (req, res) => {
   
 // Handle login logic
 router.post('/user/login', authController.passportLoginUser);
+
+//User Dashed after logging in
+router.get('/user/dashboard', isLoggedIn, (req, res) => {
+  res.render('user/dashboard', {user: req.user});
+});
 
 module.exports = router;
