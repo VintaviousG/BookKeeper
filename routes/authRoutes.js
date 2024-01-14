@@ -26,5 +26,5 @@ router.post('/user/login', authController.passportLoginUser);
 router.get('/user/dashboard', isLoggedIn, (req, res) => {
   res.render('user/dashboard', {user: req.user});
 });
-
+router.get('/user/logout', authController.logoutUser);
 module.exports = router;

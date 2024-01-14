@@ -66,7 +66,12 @@ exports.passportLoginUser = passport.authenticate('local', {
 })
 
 exports.logoutUser = (req, res) => {
-  req.logout();  // Passport adds a logout() function to the request object
+  req.logout((err) => {
+    if (err) {
+      console.log(err)
+      return;
+    }
+  });
   res.redirect('/auth/user/login');
   console.log(`Logout Successful`);
 }
