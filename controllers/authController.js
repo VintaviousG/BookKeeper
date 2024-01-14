@@ -65,7 +65,11 @@ exports.passportLoginUser = passport.authenticate('local', {
   failureFlash: true //Enable flash message for failed login
 })
 
-
+exports.logoutUser = (req, res) => {
+  req.logout();  // Passport adds a logout() function to the request object
+  res.redirect('/auth/user/login');
+  console.log(`Logout Successful`);
+}
 
 
 
