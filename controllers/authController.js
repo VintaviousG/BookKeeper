@@ -48,10 +48,11 @@ exports.passportUserRegister = (req, res) => {
       return res.status(500).json({ error: 'Registration failed' });
     }
     passport.authenticate('local')(req, res, () => {
-      res.json({
-        success: true,
+      // res.json({
+      //   success: true,
   
-      });
+      // });
+      res.redirect('/admin/users')
       console.log(req.body.username)
     });
   });
