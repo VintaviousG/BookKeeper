@@ -5,11 +5,12 @@ const { Book } = require('../models/Book');
 const { Review } = require('../models/review');
 const ReviewModel = require("../models/review");
 const BookModel = require("../models/Book");
+const { isLoggedIn } = require('../config/auth');
 
 //const { GetAdmin,  } = require('../controllers/adminController');
 const userRouter = express.Router();
 
-userRouter.get('/books', userController.getUserAllBooks );
+userRouter.get('/books', isLoggedIn, userController.getUserAllBooks );
   
   // Route: GET /books/:id
   // Description: Get a book by ID
