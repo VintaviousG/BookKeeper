@@ -60,7 +60,7 @@ exports.passportUserRegister = (req, res) => {
 
 //Login the User In using Passport JS
 exports.passportLoginUser = passport.authenticate('local', {
-  successRedirect: '/auth/user/dashboard', //Redirect on successful login
+  successRedirect: '/user/books', //Redirect on successful login
   failureRedirect: '/auth/user/login', //Redirect back to login pagin if failed
   failureFlash: true //Enable flash message for failed login
 })
