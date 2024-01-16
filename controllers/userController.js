@@ -13,7 +13,7 @@ const ReviewModel = require("../models/review");
 const getUserAllBooks = async (req, res) => {
     try {
         const books = await BookModel.Book.find({});
-        res.render("user/books", { books: books });
+        res.render("user/books", { books: books, user: req.user });
     } catch (error) {
         console.log(error);
         res.send("Something went wrong on the Book Routes"); // Handle error appropriately
