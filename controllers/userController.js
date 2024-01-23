@@ -31,7 +31,7 @@ const getBookByID = async (req, res) => {
             return res.status(404).send("Book not found");
         }
 
-        res.render("user/bookById", { book: book });
+        res.render("user/bookById", { book: book, user: req.user });
     } catch (error) {
         console.log("Error:", error);
         res.status(500).send("Internal Server Error");

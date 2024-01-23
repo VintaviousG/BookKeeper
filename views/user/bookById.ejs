@@ -12,8 +12,30 @@
     </head>
     <body>
         <!-- Inside bookById.ejs -->
-
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/books">Book Portal</a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <span class="navbar-text">
+                                Welcome, <%= user.username %>!
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                          
+                                <button type="submit" class="btn btn-danger">
+                                    <a href="/auth/user/logout" class="btn btn-danger">Logout</a>
+                                </button>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+  
         <div class="container mt-4">
+
             <h2>Book Details</h2>
 
             <h1><%= book.title %></h1>
@@ -25,21 +47,23 @@
 
             <h2>Leave a Review</h2>
             
-
-            <form action="/user/bookById/<%=book._id%>/reviews" class="mb-3 was-validated .invalid-feedback"  method="POST" >
-                <div class="mb-3">
-                    <label class="form-label" for="rating">Rating</label>
-                    <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="body">Review</label>
-                    <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
-                    <div class="valid-feedback">
-                        Looks good!
+            <% if (user) { %>
+                <form action="/user/bookById/<%=book._id%>/reviews" class="mb-3 was-validated .invalid-feedback"  method="POST" >
+                    <div class="mb-3">
+                        <label class="form-label" for="rating">Rating</label>
+                        <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
                     </div>
-                </div>
-                <button class="btn btn-success">Submit</button>
-            </form>
+                    <div class="mb-3">
+                        <label class="form-label" for="body">Review</label>
+                        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <button class="btn btn-success">Submit</button>
+                </form>
+            <% } %>
+        
 
 
             <div class="mt-4">
@@ -53,9 +77,10 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">
+                        User: <%= user.username %>
                         Rating: <%= review.rating %>
                     </h5>
-                    <p class="card-text">Review: <%= review.body %></p>
+                    <p class="card-text"> <%= review.body %></p>
 
                           <!-- Button to delete the review -->
             <form action="/user/bookById/<%=book._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
