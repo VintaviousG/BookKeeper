@@ -73,7 +73,9 @@ const bookCreate = async (req, res) => {
 const bookDetails = async (req, res) => {
     try {
         const book = await BookModel.Book.findById(req.params.id);
-        res.render("books/details", { book });
+        //Get current user id, to use for reviews
+        const currentUser = req.user;
+        res.render("books/details", { book});
     } catch (error) {
         console.log(error);
         res.redirect("/books"); // Handle error appropriately

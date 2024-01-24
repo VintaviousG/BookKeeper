@@ -1,16 +1,21 @@
 //npm packages I will need express, mongoose, dotenv, ejs, ejs-mate
 const express = require("express");
-const mongoose = require("mongoose");
+
 const ejsMate = require("ejs-mate");
 const session = require('express-session');
+const flash = require('connect-flash');
 const morgan = require("morgan");
 const methodOverride = require("method-override");
 const passport = require('passport');
+const LocalStrategy = require('passport-local');
+
 
 const adminRoutes = require("./routes/admin");
 const bookRoutes = require("./routes/bookRoutes");
 const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/authRoutes");
+//User Model Example
+const User = require('./models/User');
 
 const app = express();
 //Use Morgan Middleware
@@ -29,6 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(session({ secret: 'secret-key-example', resave: true, saveUninitialized: false }));
+app.use(flash());
 
 //Passport setup for app to use
 app.use(passport.initialize());
@@ -36,7 +42,18 @@ app.use(passport.session());
 
 
 // Require and use the passport configuration
-require('./config/passport');
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+})
 
 //Setup or basic route
 app.get("/", function (req, res) {
