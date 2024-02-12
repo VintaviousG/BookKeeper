@@ -34,15 +34,23 @@ try {
     return res.status(404).json({error: 'Book not found'})
   }
 
-  // const newReview = {
-  //   body, 
-  //   rating, 
-  //   user: userID,
-  // }
+  const newReview = {
+    body: req.body.body, 
+    rating: req.body.rating, 
+    user: userID,
+  }
 
-  books.reviews.push(review);
+  // Create a new review and get its ObjectId
+  const createdReview = await ReviewModel.Review(newReview);
 
-  await review.save();
+  //save the review ti the database
+  await createdReview.save();
+
+  books.reviews.push(createdReview);
+
+  //await review.save();
+
+  //Save the updated book
   await books.save();
   console.log("Review Saved")
   res.redirect(`/user/bookById/${books._id}`);
