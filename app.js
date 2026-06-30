@@ -73,6 +73,6 @@ app.use("/user", userRoutes);
 app.use("/auth", authRoutes);
 
 //Listening on Port 3000
-app.listen(3000, function () {
+app.listen(3002, function () {
     console.log("Server is listening on port 3000");
 });
